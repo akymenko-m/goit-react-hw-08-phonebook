@@ -3,7 +3,7 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import { nanoid } from 'nanoid';
-import { Main, Title, SubTitle } from './App.styled';
+import { Main, Title, SubTitle, Notice } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -60,8 +60,10 @@ export class App extends Component {
         <ContactForm onSubmit={this.addFfiend} />
 
         <SubTitle>Contacts</SubTitle>
-        {this.state.contacts.length > 0 && (
+        {this.state.contacts.length > 0 ? (
           <Filter onChange={this.handleFilter} value={this.state.filter} />
+        ) : (
+          <Notice>You don't have contacts yet...</Notice>
         )}
         <ContactList
           contactsList={filteredContacts}

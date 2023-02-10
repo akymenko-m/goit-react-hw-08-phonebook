@@ -11,3 +11,7 @@ export const Title = styled.h1`
 export const SubTitle = styled.h2`
   margin-bottom: 20px;
 `;
+
+export const Notice = styled.p`
+  font-weight: 600;
+`;
