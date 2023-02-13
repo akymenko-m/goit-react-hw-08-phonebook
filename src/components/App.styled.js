@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const Main = styled.div`
   padding: 20px;
+  background-color: red;
 `;
 
 export const Title = styled.h1`
