@@ -18,14 +18,15 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    const savedContacts = storage.load('contacts-list') ?? [];
+    console.log(this.state.contacts);
+    const savedContacts = storage.load('contacts-list') ?? this.state.contacts;
     this.setState({ contacts: savedContacts });
-    console.log('yes');
   }
   componentDidUpdate(_, prevState) {
-    const { contacts } = this.state;
-    if (prevState.contacts !== contacts) {
-      storage.save('contacts-list', contacts);
+    // const { contacts } = this.state;
+    console.log(prevState.contacts);
+    if (prevState.contacts !== this.state.contacts) {
+      storage.save('contacts-list', this.state.contacts);
       // console.log(contacts);
     }
   }
