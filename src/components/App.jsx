@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import storage from '../helpers/storage';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
@@ -15,6 +16,18 @@ export class App extends Component {
     ],
     filter: '',
   };
+
+  componentDidMount() {
+    const savedContacts = storage.load('contacts-list') ?? this.state.contacts;
+    this.setState({ contacts: savedContacts });
+  }
+  componentDidUpdate(_, prevState) {
+    const { contacts } = this.state;
+    if (prevState !== contacts) {
+      storage.save('contacts-list', contacts);
+      // console.log(contacts);
+    }
+  }
 
   addFfiend = contact => {
     if (
