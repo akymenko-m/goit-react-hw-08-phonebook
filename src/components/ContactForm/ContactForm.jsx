@@ -3,16 +3,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { getContacts } from 'redux/selectors';
-import { Form, Label, Input, BtnAddContact } from './ContactFofm.styled';
-import { addContact } from 'redux/operations';
+import { getContacts } from 'redux/contacts/selectors';
+import { Form, Label } from './ContactFofm.styled';
+import { addContact } from 'redux/contacts/operations';
+import { Button, Input } from '@chakra-ui/react';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
 
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const inputChange = event => {
     const { name, value } = event.target;
@@ -22,8 +23,8 @@ export const ContactForm = () => {
       return;
     }
 
-    if (name === 'phone') {
-      setPhone(value);
+    if (name === 'number') {
+      setNumber(value);
       return;
     }
   };
@@ -39,14 +40,14 @@ export const ContactForm = () => {
       toast.info(`${name} is already in contacts!`);
       return;
     }
-
-    dispatch(addContact({ name, phone }));
     reset();
+
+    dispatch(addContact({ name, number }));
   };
 
   const reset = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -55,6 +56,8 @@ export const ContactForm = () => {
       <Form onSubmit={handleSubmit}>
         <Label htmlFor="name">Name</Label>
         <Input
+          variant="filled"
+          placeholder="Harry Bin"
           id="name"
           type="text"
           name="name"
@@ -67,16 +70,21 @@ export const ContactForm = () => {
 
         <Label htmlFor="number">Number</Label>
         <Input
+          variant="filled"
+          placeholder="+380"
           id="number"
           type="tel"
-          name="phone"
+          name="number"
           onChange={inputChange}
-          value={phone}
+          value={number}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
-        <BtnAddContact type="submit">Add contact</BtnAddContact>
+        {/* <BtnAddContact type="submit">Add contact</BtnAddContact> */}
+        <Button type="submit" colorScheme="teal" size="md">
+          Add contact
+        </Button>
       </Form>
     </>
   );

@@ -5,6 +5,7 @@ export const FilterContainer = styled.div`
 `;
 
 export const FilterTitle = styled.p`
+  margin-top: 20px;
   margin-bottom: 10px;
 `;
 

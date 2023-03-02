@@ -1,38 +1,50 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { ContactsPage } from 'pages/ContactsPage/ContactsPage';
+import { Navigation } from 'components/Navigation/Navigation';
+import LogInPage from 'pages/LogInPage/LogInPage';
+import RegisterPage from 'pages/RegisterPage/RegisterPage';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getContacts, getIsloading } from 'redux/selectors';
-import { fetchContacts } from 'redux/operations';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-import { Main, Title, SubTitle, Notice } from './App.styled';
-import { Loader } from 'components/Loader/Loader';
+import { refreshUser } from 'redux/user/operations';
+import { PublicRoute } from './PublicRout';
+import { PrivateRoute } from './PrivetRoute';
 
 export const App = () => {
-  const contacts = useSelector(getContacts);
-  const isLoading = useSelector(getIsloading);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
   return (
-    <Main>
-      {isLoading && <Loader />}
+    <div>
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute redirectTo="/contacts" component={<LogInPage />} />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute
+                redirectTo="/contacts"
+                component={<RegisterPage />}
+              />
+            }
+          />
+        </Route>
 
-      <Title>Phonebook</Title>
-      <ContactForm />
-
-      <SubTitle>Contacts</SubTitle>
-
-      {contacts.length > 0 && <Filter />}
-
-      {contacts.length === 0 ? (
-        <Notice>You don't have contacts yet...</Notice>
-      ) : (
-        <ContactList />
-      )}
-    </Main>
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </div>
   );
 };

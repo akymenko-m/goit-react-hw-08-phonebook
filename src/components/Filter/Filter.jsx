@@ -1,6 +1,7 @@
-import { addFilter } from 'redux/filterSlice';
+import { addFilter } from 'redux/contacts/filterSlice';
 import { useDispatch } from 'react-redux';
-import { FilterContainer, FilterTitle, FilterInput } from './Filter.styled';
+import { FilterContainer, FilterTitle } from './Filter.styled';
+import { Input } from '@chakra-ui/react';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -8,7 +9,11 @@ export const Filter = () => {
   return (
     <FilterContainer>
       <FilterTitle>Find contacts by name</FilterTitle>
-      <FilterInput
+
+      <Input
+        width="auto"
+        variant="outline"
+        placeholder="Enter name"
         type="text"
         name="filter"
         onChange={event => dispatch(addFilter(event.target.value))}

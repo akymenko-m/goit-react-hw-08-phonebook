@@ -19,3 +19,8 @@ export const BtnDelete = styled.button`
     background-color: teal;
   }
 `;
+
+export const BtnBlock = styled.div`
+  display: flex;
+  gap: 10px;
+`;
