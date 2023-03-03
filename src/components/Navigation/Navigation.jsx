@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/user/selectors';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import {
+  AlertStyled,
   LinkBoxStyled,
   Main,
   NavLogin,
@@ -63,6 +64,12 @@ export const Navigation = () => {
       <Divider />
 
       <Main>
+        {!isLoggedIn && (
+          <AlertStyled status="success" variant="top-accent">
+            To start using the app, please log in or sign up.
+          </AlertStyled>
+        )}
+
         <Outlet />
       </Main>
     </div>

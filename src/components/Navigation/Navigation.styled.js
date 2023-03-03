@@ -1,4 +1,4 @@
-import { LinkBox } from '@chakra-ui/react';
+import { Alert, LinkBox } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 export const Main = styled.main`
@@ -11,7 +11,7 @@ export const NavUserMenu = styled.div`
 `;
 
 export const NavLogin = styled.div`
-  padding: 10px;
+  padding: 10px 20px;
   display: flex;
   gap: 10px;
 `;
@@ -29,4 +29,8 @@ export const LinkBoxStyled = styled(LinkBox)`
   & .active {
     text-decoration: underline;
   }
+`;
+
+export const AlertStyled = styled(Alert)`
+  margin-top: 20px;
 `;
