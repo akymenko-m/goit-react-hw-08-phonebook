@@ -2,13 +2,12 @@ import { LinkBox } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 export const Main = styled.main`
-  padding: 0 15px 15px;
+  padding: 0 20px 20px;
 `;
 
 export const NavUserMenu = styled.div`
-  padding: 10px;
+  padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
 `;
 
 export const NavLogin = styled.div`
@@ -18,6 +17,7 @@ export const NavLogin = styled.div`
 `;
 
 export const LinkBoxStyled = styled(LinkBox)`
+  margin-right: 50px;
   display: flex;
   text-align: center;
   justify-content: center;

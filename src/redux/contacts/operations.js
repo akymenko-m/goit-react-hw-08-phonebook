@@ -41,9 +41,9 @@ export const deleteContact = createAsyncThunk(
 
 export const updateContact = createAsyncThunk(
   'contacts/updateContact',
-  async (contactId, thunkApi) => {
+  async ({ id, formData }, thunkApi) => {
     try {
-      const { data } = await instance.patch(`contacts/${contactId}`);
+      const { data } = await instance.patch(`contacts/${id}`, formData);
       console.log(data);
 
       return data;

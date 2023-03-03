@@ -5,7 +5,6 @@ import { updateContact } from 'redux/contacts/operations';
 import { ChangeContactForm, CollapseStyled } from './EditContact.styled';
 
 export const EditContact = ({ id }) => {
-  console.log(id);
   const numberInputRef = useRef();
   const nameInputRef = useRef();
   const dispatch = useDispatch();
@@ -17,10 +16,11 @@ export const EditContact = ({ id }) => {
       number: numberInputRef.current.value,
       name: nameInputRef.current.value,
     };
+
     console.log(id, formData);
     // onSubmit(formData);
-    dispatch(updateContact(id, formData));
-    // event.target.reset();
+    dispatch(updateContact({ id, formData }));
+    event.target.reset();
   };
 
   function CollapseEx() {
