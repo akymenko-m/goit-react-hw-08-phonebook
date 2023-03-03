@@ -33,4 +33,5 @@ export const LinkBoxStyled = styled(LinkBox)`
 
 export const AlertStyled = styled(Alert)`
   margin-top: 20px;
+  width: 50%;
 `;
