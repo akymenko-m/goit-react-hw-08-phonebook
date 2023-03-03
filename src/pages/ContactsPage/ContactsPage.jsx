@@ -9,7 +9,7 @@ import { Title, Notice } from './ContactsPage.styled';
 import { Loader } from 'components/Loader/Loader';
 import { Heading } from '@chakra-ui/react';
 
-export const ContactsPage = () => {
+const ContactsPage = () => {
   const contacts = useSelector(getContacts);
   const isLoading = useSelector(getIsloading);
   const dispatch = useDispatch();
@@ -38,3 +38,5 @@ export const ContactsPage = () => {
     </div>
   );
 };
+
+export default ContactsPage;

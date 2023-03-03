@@ -1,13 +1,11 @@
+import PropTypes from 'prop-types';
 import { Box, Button, Input, useDisclosure } from '@chakra-ui/react';
 import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateContact } from 'redux/contacts/operations';
 import { ChangeContactForm, CollapseStyled } from './EditContact.styled';
 
-export const EditContact = ({ id }) => {
+export const EditContact = ({ onSubmit }) => {
   const numberInputRef = useRef();
   const nameInputRef = useRef();
-  const dispatch = useDispatch();
 
   const handelSubmit = event => {
     event.preventDefault();
@@ -17,9 +15,7 @@ export const EditContact = ({ id }) => {
       name: nameInputRef.current.value,
     };
 
-    console.log(id, formData);
-    // onSubmit(formData);
-    dispatch(updateContact({ id, formData }));
+    onSubmit(formData);
     event.target.reset();
   };
 
@@ -76,4 +72,8 @@ export const EditContact = ({ id }) => {
   }
 
   return CollapseEx();
+};
+
+EditContact.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };

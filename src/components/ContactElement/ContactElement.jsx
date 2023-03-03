@@ -2,7 +2,7 @@ import { EditContact } from 'components/EditContact/EditContact';
 import { Button } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contacts/operations';
+import { deleteContact, updateContact } from 'redux/contacts/operations';
 import { BtnBlock, ElContact, Name, Number } from './ContactElement.styled';
 
 export const ContactElement = ({ id, name, number }) => {
@@ -12,10 +12,9 @@ export const ContactElement = ({ id, name, number }) => {
     dispatch(deleteContact(id));
   };
 
-  // const handleEdit = id => {
-  //   // console.log(id);
-  //   dispatch(updateContact(id));
-  // };
+  const handleEdit = formData => {
+    dispatch(updateContact({ id, formData }));
+  };
 
   return (
     <>
@@ -34,10 +33,7 @@ export const ContactElement = ({ id, name, number }) => {
             Delete
           </Button>
 
-          {/* <button type="button" onClick={() => handleEdit(id)}>
-          Edit
-        </button> */}
-          <EditContact id={id} />
+          <EditContact onSubmit={handleEdit} />
         </BtnBlock>
       </ElContact>
     </>

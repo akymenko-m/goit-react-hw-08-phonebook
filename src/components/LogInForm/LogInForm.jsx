@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Button, Input } from '@chakra-ui/react';
 import { useRef } from 'react';
 import { Form, Label } from './LogInForm.styled';
@@ -13,9 +14,8 @@ export const LogInForm = ({ onSubmit }) => {
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
     };
-    console.log(formData);
-    onSubmit(formData);
 
+    onSubmit(formData);
     event.target.reset();
   };
 
@@ -48,4 +48,8 @@ export const LogInForm = ({ onSubmit }) => {
       </Button>
     </Form>
   );
+};
+
+LogInForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };

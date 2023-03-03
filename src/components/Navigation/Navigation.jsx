@@ -13,7 +13,6 @@ import { Divider } from '@chakra-ui/react';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // console.log(isLoggedIn);
 
   return (
     <div>

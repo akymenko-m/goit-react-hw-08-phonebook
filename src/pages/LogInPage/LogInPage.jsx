@@ -9,7 +9,6 @@ const LogInPage = () => {
   const dispatch = useDispatch();
 
   const handleRegister = formData => {
-    console.log(formData);
     dispatch(logInUser(formData));
   };
 

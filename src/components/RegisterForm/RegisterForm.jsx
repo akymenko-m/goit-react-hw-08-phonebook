@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Button, Input } from '@chakra-ui/react';
 import { useRef } from 'react';
 import { Form, Label } from './RegisterForm.styled';
@@ -61,4 +62,8 @@ export const RegisterForm = ({ onSubmit }) => {
       </Button>
     </Form>
   );
+};
+
+RegisterForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
